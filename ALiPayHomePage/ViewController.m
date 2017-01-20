@@ -15,6 +15,7 @@
 
 @property (nonatomic , strong) DFLHeaderView *headerView;
 
+//如果使用UIView 可以实现滑动效果，但是添加在parentScrollView的tableView和headerView，的点击事件无效
 @property (nonatomic , strong) UIScrollView *parentScrollView;
 
 @end

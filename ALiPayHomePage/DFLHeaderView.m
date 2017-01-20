@@ -31,6 +31,8 @@
             UIButton *button = [[UIButton alloc] initWithFrame:frame];
             [button setTitle:[self titles][i] forState:UIControlStateNormal];
             button.backgroundColor = [UIColor redColor];
+            button.tag = i;
+            [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
             button.layer.cornerRadius = 30;
             button.layer.masksToBounds = YES;
             [self addSubview:button];
@@ -39,18 +41,21 @@
     return self;
 }
 
-//- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    for (UIView *subview in [self.subviews reverseObjectEnumerator]) {
-//        
-//        CGPoint convertedPoint = [subview convertPoint:point fromView:self];
-//        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];
-//        if (hitTestView) {
-//            return hitTestView;
-//        }
-//    }
-//    return [super hitTest:point withEvent:event];
-//}
+- (void)click:(UIButton *)button {
+    NSLog(@"%ld",(long)button.tag);
+}
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    for (UIView *subview in [self.subviews reverseObjectEnumerator]) {
+        
+        CGPoint convertedPoint = [subview convertPoint:point fromView:self];
+        UIView *hitTestView = [subview hitTest:convertedPoint withEvent:event];
+        if (hitTestView) {
+            return hitTestView;
+        }
+    }
+    return [super hitTest:point withEvent:event];
+}
 
 
 
